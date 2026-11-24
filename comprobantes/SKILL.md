@@ -95,6 +95,15 @@ FOLLOW THE UX/UI GUIDELINE AND BEHAVIOR IN FIGMA
 
 If the user requested multiple stories (e.g., the 3 of the approval flow), generate all of them in one response, clearly separated by headers.
 
+### Document secondary scenarios from the source
+
+Each materially different branch needs a testable acceptance criterion. Write it in this order: trigger or service result → exact screen title and message → each available action's exact UI label → its behavior and destination. Keep the story and developer-facing behavior in English; preserve the visible UI copy verbatim, in Spanish when the design is Spanish, and bold it in double quotes.
+
+- In an enterprise flow, identify who grants the relevant permission (for example, the company administrator) when the source establishes it. Distinguish a successful service response that denies access from the permission lookup failing. Name the real service only when supplied by the source. Include any visible loading behavior and when actions are disabled.
+- Do not replace a UI label with technical shorthand. For example: “When the user taps **"Reintentar"**, run the failed validation again.” Do not add a **"Reintentar"** action if the source shows only **"Continuar"**. Handle each supported variant separately, including dismiss, cancel, and navigation actions, without inventing a destination.
+- Compare the frame, annotations and connectors. A connector describes behavior; it does not override visible copy by itself. If sources disagree or do not establish a destination, flag the exact point for confirmation rather than silently choosing one. Do not invent a load, retry count, error state, backend field, or permission rule.
+- For a Figma review board, keep the main screen and place visible copies of the referenced dialogs and other relevant secondary states next to the story. Label them by scenario so the product owner can match them to the criteria. Label a borrowed pattern as a reference, not as a confirmed variant, and leave the source flow untouched.
+
 ## Critical behaviors to never violate
 
 - **Always include the Jira title** — for both platforms use `Android/iOS`; for loan pending payments use `(Préstamo - Cuotas pendientes)`; for authorization completed use `Autorización pendiente`, for rejected use `Rechazada`, for final signer use `Última Aprobación`, for submitted requests use `Solicitud sometida`, and for final receipts use `Comprobante final`.
