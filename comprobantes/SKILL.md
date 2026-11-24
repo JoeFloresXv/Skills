@@ -1,13 +1,26 @@
 ---
 name: comprobante-story-writer
-description: Writes App BIZ transaction voucher/receipt user stories (comprobantes) in the exact style of the Product Owner. Use this skill whenever the user uploads an image of a voucher screen and asks for a story, or mentions "comprobante", "voucher", "verificación", "autorización completada", "transacción rechazada", "flujo de aprobación", "solicitud completada", or asks for a story for Código Cash, Préstamos, Transferencias, or any other App BIZ transactional product. Covers both the standard transaction flow and the approval flow (where company admin users authorize, approve, or reject transactions submitted by other users). Also trigger when the user asks for multiple variants of a voucher story (e.g., "dame las 3 del flujo de aprobación") or when migrating a standard-flow voucher to its approval-flow counterparts.
+description: Turns App BIZ and similar enterprise app flows into Jira user stories and testable acceptance criteria. Use when asked to scope or draft stories from Figma screens, connectors, or service behavior, including permission checks, secondary errors, and transaction voucher or verification screens.
 ---
 
-# Comprobante Story Writer
+# App Flow & Comprobante Story Writer
 
-Generate App BIZ voucher/receipt user stories in the Product Owner's exact writing style, from an image of the target screen.
+Turn app flows and transaction screens into Jira-ready stories in the Product Owner's style. Keep the existing skill name so older invocations still work.
 
-## What this skill does
+## Choose a workflow
+
+- **Complete or partial app flow:** Use the flow review below. Cover entry points, roles, service calls, intermediate states, and user outcomes in the requested scope.
+- **Individual voucher or verification screen:** Use the existing voucher workflow and its templates below. When a larger flow contains these screens, use the voucher workflow for those stories only.
+
+### Flow review and story boundaries
+
+1. Read only the requested branch. Start with the user intent and intended outcome, then trace confirmed frame sequences, branching connectors, annotations and any user-provided service contract. A duplicated frame or visual variant is not a second story. Distinguish confirmed behavior, inference and open questions.
+2. Build a compact scenario matrix before drafting: story candidate, entry or trigger, actor and permission source, verified service name, expected result or failure, UI state, exact CTA and destination. Include loading/disabled controls, business-rule responses (such as an access denial after a successful lookup), technical failures, input/validation errors, safe retry, cancel and fallback wherever evidenced. Include other relevant branches such as empty or partial results only when present in the source. If a service is unnamed, describe its role and mark the name as unverified; do not invent an endpoint, payload, retry count or navigation target. For a retry, distinguish repeating a lookup from repeating a transaction, and leave retry safety open if it is not specified.
+3. Split stories on an independently deliverable user goal, distinct actor or separately testable outcome, not on every screen, error, copy change or OS variant. Keep secondary scenarios, even service failures, as explicit acceptance criteria in the owning story unless separately scoped. Never discard a branch just because it is not its own ticket. Track each confirmed branch against exactly one owning story; cross-reference shared behavior as appropriate.
+4. If asked for a list first, return only the scope, proposed titles, total, and the key secondary scenarios grouped under their owning stories. Wait for drafting approval when requested. Otherwise, produce one Jira title, English story with exact Spanish UI labels where applicable, acceptance criteria and checklist per story. Group criteria under the main path and relevant secondary scenarios. For a requested Figma board, put the main screen and scenario evidence next to each text block without editing the source flow.
+5. Before delivery, compare the matrix with the story set: each confirmed service result or secondary scenario must be covered, each visible CTA must match the design, and each contradiction must be flagged instead of resolved by guessing.
+
+## Voucher mode: what this skill does
 
 The user uploads an image of an App BIZ comprobante (voucher/receipt screen) and asks for a user story of a specific type. This skill produces the story in the PO's exact writing style (English narrative with Spanish UI field labels in quotes), plus a Jira-ready acceptance criteria checklist.
 
@@ -32,7 +45,7 @@ Every type has possible variants:
 - Multimoneda (USD-USD, EUR-EUR, or currency exchange) — opt-in, not all products support this
 - Single / compartir (shareable version with reduced fields) — opt-in, product-dependent
 
-## Workflow
+## Voucher workflow
 
 **Step 1: Identify the story type requested.**
 
