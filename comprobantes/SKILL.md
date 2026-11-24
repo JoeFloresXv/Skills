@@ -20,11 +20,19 @@ Turn app flows and transaction screens into Jira-ready stories in the Product Ow
 4. If asked for a list first, return only the scope, proposed titles, total, and the key secondary scenarios grouped under their owning stories. Wait for drafting approval when requested. Otherwise, produce one Jira title, English story with exact Spanish UI labels where applicable, acceptance criteria and checklist per story. Group criteria under the main path and relevant secondary scenarios. For a requested Figma board, put the main screen and scenario evidence next to each text block without editing the source flow.
 5. Before delivery, compare the matrix with the story set: each confirmed service result or secondary scenario must be covered, each visible CTA must match the design, and each contradiction must be flagged instead of resolved by guessing.
 
+### Separate open questions: Ojo con esto
+
+Before leaving a question open, check the latest Figma frame, connector and notes. If the flow already answers it, write the confirmed behavior as a criterion and do not repeat the question.
+
+For an unanswered or conflicting detail that affects implementation, add a separate **Ojo con esto** section after the Jira checklist. Never put a clarification question or an unconfirmed outcome in the story body, acceptance criteria, or checklist. Keep confirmed parts of that branch in the criteria.
+
+Use short points. Give each open issue its own **Contexto** (screen or action, what is shown and what is unclear) and **Pregunta** (one concrete decision, such as where an enabled button takes the user). Link or label the relevant screen or connector when available. For a Figma review board, place this section in a separate panel beside or below the story and checklist, not inside either copyable field. Omit it if there are no open questions. When the source or PO resolves one, add the confirmed result to the criteria and checklist, then remove that point.
+
 ### Write for a live review
 
 Use plain English that is easy to read aloud in a mixed-language meeting. Keep the PO's opening and familiar verbs: present, show, tap, open, go back, call, enable and disable. Use short sentences and one action or result per line. Where the logic branches, start with “When the user taps...” or “If the service fails...”, then state what happens.
 
-Use **Disable** and **Enable** for controls. For example, write: “Disable **"Continuar"** while the service is loading.” Do not use “is unavailable while retrying” for a disabled button. Prefer “call the service again” over “rerun the applicable validation”, and “go back to the previous screen” over “return to the preceding context”. Keep exact service names, business rules, thresholds and Spanish UI copy. Make the wording simpler, not the behavior. Use “To confirm:” for open questions, not as a product rule.
+Use **Disable** and **Enable** for controls. For example, write: “Disable **"Continuar"** while the service is loading.” Do not use “is unavailable while retrying” for a disabled button. Prefer “call the service again” over “rerun the applicable validation”, and “go back to the previous screen” over “return to the preceding context”. Keep exact service names, business rules, thresholds and Spanish UI copy. Make the wording simpler, not the behavior. Put open questions only in the separate **Ojo con esto** section.
 
 Before delivery, read each branch aloud. Simplify any line that is hard to say or understand on the first read. Keep the same wording in the Jira checklist.
 
